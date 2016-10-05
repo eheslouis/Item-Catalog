@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% block content %}
+	
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 catalog-display">
+			<h3>{{item.name}}</h3>
+			<p class="description">Description: {{item.description}}</p>
+			{% if edit %}
+			<a href="{{url_for('editItem', item_name = item.name, category_name = item.category.name)}}">Edit</a> | <a href="{{url_for('deleteItem', item_name = item.name, category_name = item.category.name)}}">Delete</a>
+			{% endif %}
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+<div class="row top">
+	<div class="col-md-1"></div>
+	<div class="col-md-6">
+		<a href="{{url_for('showCatalog')}}">
+			<h1 style="margin-top: 0px; margin-bottom: 0px;">Catalog App</h1>
+		</a>
+	</div>
+	<div class="col-md-4 text-right">
+		{% if 'username' not in session %}
+			<a href="{{url_for('showLogin')}}"><button class="log-button">Login</button></a>
+		{% else %}
+			<p class = "username-header">{{session['username']}}</p>
+			<a href="{{url_for('disconnect')}}"><button class="log-button">Logout</button></a>
+		{% endif %}
+	</div>
+	<div class="col-md-1"></div>
+</div>

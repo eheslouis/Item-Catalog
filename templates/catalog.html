@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+{% block content %}
+	
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<div class = "row catalog-display">
+				<div class="col-md-4">
+					<p>Categories</p>
+					{% for cat in categories %}
+					<a href="{{url_for('showCategory', category_name=cat.name)}}">
+						<div class="row">
+							<div class="col-md-12 category-list">{{cat.name}}</div>
+						</div>
+					</a>
+					{% endfor %}
+				</div>
+				<div class="col-md-8">
+					{% if addItem %}
+					<a href="{{url_for('addItem')}}">Add Item</a><br><br>
+					{% endif %}
+
+					{% if category %}
+					<p>{{category.name}} Items ({{items|length}} item{% if items|length > 1%}s{% endif %})</p>
+					{% else %}
+					<p>Latest Items</p>
+					{% endif %}
+					{% for item in items %}
+					<a href="{{url_for('showItem', category_name=item.category.name, item_name=item.name)}}">
+						<div class="row">
+							<div class="col-md-12 item-list">{{item.name}} 
+							{% if not category %}({{item.category.name}}){% endif %}</div>
+						</div>
+					</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+{% endblock %}
